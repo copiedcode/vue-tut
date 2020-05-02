@@ -4,16 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VUE-UE</title>
+    <style>
+        .done{
+            color: gray;
+            text-decoration: line-through;
+        }
+        li {
+            cursor: pointer;
+        }
+
+    </style>
 </head>
 <body>
 
 <div id="root">
-    <input type="text" id="input" v-model="message">
-    <p>Input: {{ message }}</p>
-    <li v-for = "name in names" v-text = "name"></li>
 
-    <input type="text" v-model="newName">
-    <button @click="addName">Add name</button>
+
+    <h1>
+        Task-Manager mit VUE.js
+    </h1>
+    <h2>All tasks</h2>
+    <ul>
+        <li v-for="task in tasks"
+            v-text="task.description"
+            @click="toggleDone(task)"
+            :class="{'done':task.completed}">
+        </li>
+    </ul>
+
+    <h2>Incomplete</h2>
+    <ul>
+        <li v-for="task in incompleteTasks" v-text="task.description"> </li>
+    </ul>
+
+    <h2>Complete</h2>
+    <ul>
+        <li v-for="task in completeTasks" v-text="task.description"> </li>
+    </ul>
 
 
 </div>
@@ -23,18 +50,35 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
     <script>
 
-    new Vue({
+    let app = new Vue({
         el: '#root',
         data:  {
-            message: "Hallo mein Freund.",
-            newName: '',
-            names: ['Joe', 'Mary', 'Jane']
+            tasks: [
+                { description: 'Aufstehen', completed: true},
+                { description: 'Essen kaufen', completed: false},
+                { description: 'Kochen', completed: false},
+                { description: 'Essen', completed: false},
+                { description: 'VUE lernen!', completed: false}
+            ]
         },
 
         methods: {
-            addName(){
-                this.names.push(this.newName);
-                this.newName = '';
+
+            toggleDone(task){
+                task.completed = !task.completed;
+            }
+        },
+
+        computed: {
+            reversedMessage(){
+                return this.message.split('').reverse().join('');
+            },
+
+            incompleteTasks() {
+                return this.tasks.filter(task => !task.completed);
+            },
+            completeTasks(){
+                return this.tasks.filter(task => task.completed);
             }
         },
 
