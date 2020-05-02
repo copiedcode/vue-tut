@@ -23,6 +23,9 @@
     <h1>
         Task-Manager mit VUE.js
     </h1>
+
+    <task-list>Hallo</task-list>
+
     <h2>All tasks</h2>
     <ul>
         <li v-for="task in tasks"
@@ -48,47 +51,7 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
-    <script>
-
-    let app = new Vue({
-        el: '#root',
-        data:  {
-            tasks: [
-                { description: 'Aufstehen', completed: true},
-                { description: 'Essen kaufen', completed: false},
-                { description: 'Kochen', completed: false},
-                { description: 'Essen', completed: false},
-                { description: 'VUE lernen!', completed: false}
-            ]
-        },
-
-        methods: {
-
-            toggleDone(task){
-                task.completed = !task.completed;
-            }
-        },
-
-        computed: {
-            reversedMessage(){
-                return this.message.split('').reverse().join('');
-            },
-
-            incompleteTasks() {
-                return this.tasks.filter(task => !task.completed);
-            },
-            completeTasks(){
-                return this.tasks.filter(task => task.completed);
-            }
-        },
-
-        //if everything is ready
-        mounted() {
-
-        }
-    })
-
-    </script>
+    <script src="main.js"></script>
     
 </body>
 </html>
