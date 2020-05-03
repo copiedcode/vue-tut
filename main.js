@@ -1,22 +1,39 @@
-Vue.component('modal', {
+Vue.component('taske', {
+    props: ['title', 'description', 'deadline'],
+    data(){
+        return {
+            showMore: false
+        };
+    },
     template:`
-        <div class="modal is-active">
-        <div class="modal-background"></div>
-        <div class="modal-content">
-            <div class="box">
-                <slot></slot>
-            </div>
-        </div>
-        <button class="modal-close is-large" @click="$emit('close')" aria-label="close"></button>
+
+      <div class="card" style="margin: 1em 10px">
+  <header class="card-header">
+    <p class="card-header-title">
+      {{ title }} - {{ deadline }}
+    </p>
+    <a href="#" class="card-header-icon" aria-label="more options">
+      <span class="icon" @click="showMore = !showMore">
+        <i class="fas fa-angle-down" aria-hidden="true"></i>
+      </span>
+    </a>
+  </header>
+  <div v-if="showMore" class="card-content">
+    <div class="content">
+      {{ description }}
+      <br>
+      <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
     </div>
-    
+  </div>
+  <footer class="card-footer">
+    <a href="#" class="card-footer-item">Save</a>
+    <a href="#" class="card-footer-item">Edit</a>
+    <a href="#" class="card-footer-item">Delete</a>
+  </footer>
+</div>
+
     `
-});
-
-
-
-
-
+    });
 Vue.component('message', {
     props: ['title', 'body'],
     data() {
