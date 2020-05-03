@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VUE-UE</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
     <style>
         .done{
             color: gray;
@@ -15,9 +16,37 @@
 
     </style>
 </head>
-<body>
+<body style="padding-top: 3em">
 
-<div id="root">
+<div id="root" class="container">
+
+
+    <div class="columns">
+        <div class="column">
+            <message title="Hello World." body="Hallo mein Freunnde ich bin eine Nachricht."></message>
+            <message title="Hello DU." body="Hallo mein Freunnde ich bin eine Nachricht."></message>
+        </div>
+        <div class="column">
+            <message title="Hello World." body="Hallo mein Freunnde ich bin eine Nachricht."></message>
+            <message title="Hello DU." body="Hallo mein Freunnde ich bin eine Nachricht."></message>
+        </div>
+        <div class="column">
+            <message title="Hello World." body="Hallo mein Freunnde ich bin eine Nachricht."></message>
+            <message title="Hello DU." body="Hallo mein Freunnde ich bin eine Nachricht."></message>
+        </div>
+        <div class=" is-1">
+<button>+</button>
+        </div>
+    </div>
+
+
+    <modal v-if="showModal" @close="showModal=false">
+        <p>Hallo du!</p>
+    </modal>
+
+    <button @click="showModal=true" >Show Modal</button>
+
+
 
 
     <h1>
