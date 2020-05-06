@@ -22,69 +22,69 @@
 
    <tabs>
        <tab name="About us" :selected="true">
-           <h1> Here is Tab 1.</h1>
+           <div class="columns">
+               <div class="column">
+                   <message title="Hello World." body="Hallo mein Freunnde ich bin eine Nachricht."></message>
+                   <message title="Hello DU." body="Hallo mein Freunnde ich bin eine Nachricht."></message>
+               </div>
+               <div class="column">
+                   <taske title="Müll raustragen" description="Bringe den Müll raus!" deadline="05.05.2020"></taske>
+                   <taske title="Müll raustragen" description="Bringe den Müll raus!" deadline="05.05.2020"></taske>
+                   <taske title="Müll raustragen" description="Bringe den Müll raus!" deadline="05.05.2020"></taske>
+               </div>
+               <div class="column">
+                   <message title="Hello World." body="Hallo mein Freunnde ich bin eine Nachricht."></message>
+                   <message title="Hello DU." body="Hallo mein Freunnde ich bin eine Nachricht."></message>
+               </div>
+               <div class=" is-1">
+                   <button>+</button>
+               </div>
+           </div>
        </tab>
        <tab name="About you">
-           <h1> Here is Tab 2.</h1>
+
+           <modal v-if="showModal" @close="showModal=false">
+               <p>Hallo du!</p>
+           </modal>
+
+           <button @click="showModal=true" >Show Modal</button>
        </tab>
        <tab name="About nobody">
-           <h1> Here is Tab 3.</h1>
+           <h1>
+               Task-Manager mit VUE.js
+           </h1>
+
+           <task-list>Hallo</task-list>
+
+           <h2>All tasks</h2>
+           <ul>
+               <li v-for="task in tasks"
+                   v-text="task.description"
+                   @click="toggleDone(task)"
+                   :class="{'done':task.completed}">
+               </li>
+           </ul>
+
+           <h2>Incomplete</h2>
+           <ul>
+               <li v-for="task in incompleteTasks" v-text="task.description"> </li>
+           </ul>
+
+           <h2>Complete</h2>
+           <ul>
+               <li v-for="task in completeTasks" v-text="task.description"> </li>
+           </ul>
+
        </tab>
    </tabs>
 
-    <div class="columns">
-        <div class="column">
-            <message title="Hello World." body="Hallo mein Freunnde ich bin eine Nachricht."></message>
-            <message title="Hello DU." body="Hallo mein Freunnde ich bin eine Nachricht."></message>
-        </div>
-        <div class="column">
-            <taske title="Müll raustragen" description="Bringe den Müll raus!" deadline="05.05.2020"></taske>
-            <taske title="Müll raustragen" description="Bringe den Müll raus!" deadline="05.05.2020"></taske>
-            <taske title="Müll raustragen" description="Bringe den Müll raus!" deadline="05.05.2020"></taske>
-        </div>
-        <div class="column">
-            <message title="Hello World." body="Hallo mein Freunnde ich bin eine Nachricht."></message>
-            <message title="Hello DU." body="Hallo mein Freunnde ich bin eine Nachricht."></message>
-        </div>
-        <div class=" is-1">
-<button>+</button>
-        </div>
-    </div>
-
-
-    <modal v-if="showModal" @close="showModal=false">
-        <p>Hallo du!</p>
-    </modal>
-
-    <button @click="showModal=true" >Show Modal</button>
 
 
 
 
-    <h1>
-        Task-Manager mit VUE.js
-    </h1>
 
-    <task-list>Hallo</task-list>
 
-    <h2>All tasks</h2>
-    <ul>
-        <li v-for="task in tasks"
-            v-text="task.description"
-            @click="toggleDone(task)"
-            :class="{'done':task.completed}">
-        </li>
-    </ul>
 
-    <h2>Incomplete</h2>
-    <ul>
-        <li v-for="task in incompleteTasks" v-text="task.description"> </li>
-    </ul>
-
-    <h2>Complete</h2>
-    <ul>
-        <li v-for="task in completeTasks" v-text="task.description"> </li>
-    </ul>
 
 
 </div>
