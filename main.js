@@ -3,11 +3,12 @@ Vue.component('tabs', {
     template:`
     <div>
         <div class="tabs">
-          <ul>
-            <li class="is-active"><a>Pictures</a></li>
-            <li><a>Music</a></li>
-            <li><a>Videos</a></li>
-            <li><a>Documents</a></li>
+        <ul>
+          <li v-for="tab in tabs">
+              <a href="#">
+                {{tab.name}}
+              </a>
+          </li>
           </ul>
         </div>
         
@@ -18,8 +19,12 @@ Vue.component('tabs', {
     </div>
 `,
 
-    mounted(){
-        console.log(this.$children);
+    data(){
+        return { tabs: [] };
+    },
+
+    created(){
+        this.tabs = this.$children;
     }
 });
 
@@ -102,7 +107,13 @@ Vue.component('task-list', {
     }
 
 });
+Vue.component('tab', {
+    template: '<div><slot></slot></div>',
+    props: {
+        name: { required: true}
+    }
 
+});
 
 
 Vue.component('task', {
