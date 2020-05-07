@@ -1,4 +1,16 @@
 
+Vue.component('coupon', {
+    template: "<input placeholder='Enter your code.' @blur='onCouponApplied'>",
+    methods: {
+        onCouponApplied() {
+            this.$emit('applied');
+        }
+
+    }
+})
+
+
+
 Vue.component('tabs', {
     template:`
     <div>
@@ -160,13 +172,17 @@ let app = new Vue({
             { description: 'Kochen', completed: false},
             { description: 'Essen', completed: false},
             { description: 'VUE lernen!', completed: false}
-        ]
+        ],
+        couponApplied: false
     },
 
     methods: {
 
         toggleDone(task){
             task.completed = !task.completed;
+        },
+        onCouponApplied(){
+            this.couponApplied = true;
         }
     },
 

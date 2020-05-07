@@ -43,11 +43,11 @@
        </tab>
        <tab name="About you">
 
-           <modal v-if="showModal" @close="showModal=false">
-               <p>Hallo du!</p>
-           </modal>
 
-           <button @click="showModal=true" >Show Modal</button>
+           <coupon @applied="onCouponApplied"></coupon>
+
+           <h1 v-if="couponApplied">You used a coupon!</h1>
+
        </tab>
        <tab name="About nobody">
            <h1>
