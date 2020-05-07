@@ -1,9 +1,24 @@
+window.Event = new class {
+    constructor() {
+        this.vue = new Vue();
+    }
+
+    fire(event, data=null) {
+        this.vue.$emit(event, data);
+    }
+
+    listen(event, callback){
+        this.vue.$on(event, callback);
+    }
+}
+
+
 
 Vue.component('coupon', {
     template: "<input placeholder='Enter your code.' @blur='onCouponApplied'>",
     methods: {
         onCouponApplied() {
-            this.$emit('applied');
+            Event.fire('applied');
         }
 
     }
@@ -180,10 +195,8 @@ let app = new Vue({
 
         toggleDone(task){
             task.completed = !task.completed;
-        },
-        onCouponApplied(){
-            this.couponApplied = true;
         }
+
     },
 
     computed: {
@@ -197,6 +210,10 @@ let app = new Vue({
         completeTasks(){
             return this.tasks.filter(task => task.completed);
         }
+    },
+
+    created() {
+        Event.listen('applied', () => alert('once again'));
     },
 
     //if everything is ready
